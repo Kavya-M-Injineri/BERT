@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BERT Sentiment Analysis | Premium Insight</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <div class="container">
+        <h1>BERT Movie Review Intelligence</h1>
+
+        <div class="input-group">
+            <textarea id="review-input" placeholder="Type or paste a movie review here..."></textarea>
+            <button class="btn" onclick="analyzeSentiment()">Analyze Sentiment</button>
+        </div>
+
+        <div id="result-section" class="result-section">
+            <div class="metrics">
+                <div class="card">
+                    <div class="sentiment-label">Detected Sentiment</div>
+                    <div id="sentiment-value" class="sentiment-value">Positive</div>
+                </div>
+                <div class="card">
+                    <div class="sentiment-label">Confidence Probability</div>
+                    <div class="gauge-container">
+                        <div class="gauge-bg"></div>
+                        <div id="gauge-fill" class="gauge-fill"></div>
+                    </div>
+                    <div id="confidence-value" class="sentiment-value">98.5%</div>
+                </div>
+            </div>
+
+            <div class="explanation" id="explanation">
+                <p>Hover over words to see their contribution to the sentiment.</p>
+                <div id="text-highlighted" style="margin-top:15px;"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+
+</html>
