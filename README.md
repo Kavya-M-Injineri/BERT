@@ -1,68 +1,110 @@
-# BERT Sentiment Insight: End-to-End IMDB Analysis
+# BERT Sentiment Insight
 
-A premium, state-of-the-art sentiment analysis dashboard powered by a fine-tuned **BERT** model. This project combines deep learning with a modern, glassmorphic UI to provide innovative "explainable" insights into movie reviews.
+> End-to-end IMDB sentiment analysis powered by a fine-tuned BERT model, with explainable AI and a glassmorphic dashboard.
 
-![Project Preview](https://via.placeholder.com/800x400?text=BERT+Sentiment+Insight+Dashboard)
+---
 
-## 🌟 Features
+## Overview
 
-- **Fine-Tuned BERT Engine**: Uses Hugging Face's `bert-base-uncased` fine-tuned on the IMDB dataset for high-accuracy sentiment classification.
-- **Explainable AI (XAI)**: An innovative word-highlighting system that reveals exactly which words influenced the model's decision (Positive or Negative).
-- **Premium Glassmorphism UI**: A stunning dashboard featuring backdrop blurs, vibrant gradients, and smooth animated elements.
-- **Interactive Sentiment Gauge**: Real-time confidence visualization with animated gauge transitions.
-- **Flask REST API**: A lightweight and robust backend handling model inference and explanation logic.
+BERT Sentiment Insight is a full-stack NLP application that classifies movie reviews as **Positive** or **Negative** using a fine-tuned `bert-base-uncased` model trained on the IMDB dataset. Beyond raw predictions, it features a word-level **Explainable AI (XAI)** system that highlights the tokens most responsible for the model's decision — making the inference process transparent and interpretable.
 
-## 🛠️ Technology Stack
+The frontend is built with a premium glassmorphism aesthetic: backdrop blurs, gradient overlays, and smooth animated transitions, including a real-time confidence gauge.
 
-- **Machine Learning**: PyTorch, Transformers (Hugging Face), Datasets.
-- **Backend**: Flask (Python).
-- **Frontend**: HTML5, Vanilla CSS3 (Glassmorphism), Javascript (ES6).
-- **Dataset**: IMDB Movie Reviews.
+---
 
-## 🚀 Getting Started
+## Features
 
-### 1. Installation
+- **Fine-Tuned BERT** — `bert-base-uncased` fine-tuned on IMDB for high-accuracy binary sentiment classification (target: >85% test accuracy).
+- **Explainable AI** — Token-level attribution highlights which words pushed the model toward Positive or Negative sentiment.
+- **Interactive Confidence Gauge** — Animated real-time visualization of prediction confidence.
+- **Glassmorphism UI** — Backdrop blurs, vibrant gradients, and smooth transitions built in pure CSS3.
+- **Flask REST API** — Lightweight Python backend serving model inference and XAI explanation endpoints.
 
-Ensure you have Python 3.8+ installed. Then, install the required dependencies:
+---
+
+## Tech Stack
+
+| Layer | Technology |
+|---|---|
+| ML Framework | PyTorch, Hugging Face Transformers |
+| Dataset | IMDB Movie Reviews (via Hugging Face Datasets) |
+| Evaluation | Hugging Face Evaluate |
+| Backend | Flask (Python) |
+| Frontend | HTML5, CSS3, JavaScript (ES6) |
+
+---
+
+## Project Structure
+
+```
+bert-sentiment-insight/
+├── app.py               # Flask app — inference & XAI endpoints
+├── train_bert.py        # BERT fine-tuning script
+├── templates/
+│   └── index.html       # Dashboard UI
+├── static/
+│   ├── style.css        # Glassmorphism styles
+│   └── script.js        # Frontend logic & API calls
+└── models/              # Fine-tuned model weights (git-ignored)
+```
+
+---
+
+## Getting Started
+
+### Prerequisites
+
+- Python 3.8+
+- GPU recommended for training (CPU works but is slower)
+
+### 1. Install Dependencies
 
 ```bash
 pip install torch transformers datasets flask pandas evaluate
 ```
 
-### 2. Prepare the Model
-
-Run the training script to fine-tune BERT on a subset of the IMDB dataset. This will save the model to the `models/` directory.
+### 2. Fine-Tune the Model
 
 ```bash
 python train_bert.py
 ```
 
-*Note: Training on CPU may take some time. A GPU is recommended for full dataset fine-tuning.*
+This trains `bert-base-uncased` on a subset of IMDB and saves the model to `models/`. Training logs and evaluation metrics are printed to stdout.
 
-### 3. Launch the Application
+> **Note:** Full dataset fine-tuning benefits significantly from a GPU. On CPU, consider reducing the training subset size in `train_bert.py`.
 
-Start the Flask server:
+### 3. Start the Server
 
 ```bash
 python app.py
 ```
 
-Visit the dashboard in your browser at:
-`http://127.0.0.1:5005`
-
-## 📂 Project Structure
-
-- `app.py`: Flask application with inference endpoints.
-- `train_bert.py`: Training script for fine-tuning BERT.
-- `templates/index.html`: Main dashboard UI.
-- `static/`:
-    - `style.css`: Premium glassmorphism styles.
-    - `script.js`: Frontend logic and API connectivity.
-- `models/`: Directory containing the fine-tuned model (GitIgnored).
-
-## 🧪 Evaluation
-
-The model is trained to exceed **85% accuracy** on the IMDB test set. Evaluation metrics and loss logs are generated during the training phase.
+Open your browser at **http://127.0.0.1:5005**
 
 ---
-*Developed with focus on technical depth and visual excellence.*
+
+## API Reference
+
+| Endpoint | Method | Description |
+|---|---|---|
+| `/predict` | `POST` | Returns sentiment label and confidence score |
+| `/explain` | `POST` | Returns token-level attribution for XAI highlighting |
+
+Both endpoints accept a JSON body: `{ "text": "Your movie review here." }`
+
+---
+
+## Model Performance
+
+The model targets **≥ 85% accuracy** on the IMDB test set. Training metrics (loss, accuracy per epoch) are logged during the `train_bert.py` run.
+
+---
+
+## Notes
+
+- The `models/` directory is git-ignored. Each collaborator must run `train_bert.py` locally or download a shared checkpoint.
+- The XAI system uses gradient-based or attention-based attribution — see `app.py` for implementation details.
+
+---
+
+*Built with focus on technical depth and visual excellence.*
