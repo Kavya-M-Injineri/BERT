@@ -8,7 +8,7 @@
 
 BERT Sentiment Insight is a full-stack NLP application that classifies movie reviews as **Positive** or **Negative** using a fine-tuned `bert-base-uncased` model trained on the IMDB dataset. Beyond raw predictions, it features a word-level **Explainable AI (XAI)** system that highlights the tokens most responsible for the model's decision — making the inference process transparent and interpretable.
 
-The frontend is built with a premium glassmorphism aesthetic: backdrop blurs, gradient overlays, and smooth animated transitions, including a real-time confidence gauge. 1111111111111
+The frontend is built with a premium glassmorphism aesthetic: backdrop blurs, gradient overlays, and smooth animated transitions, including a real-time confidence gauge. 
 
 ---
 
