@@ -1,4 +1,4 @@
-# BERT Sentiment Insight 66666666666666666666666
+# BERT Sentiment Insight 
 
 > End-to-end IMDB sentiment analysis powered by a fine-tuned BERT model, with explainable AI and a glassmorphic dashboard.
 
